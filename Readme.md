@@ -3,7 +3,6 @@
 ## Overview
 
 This script is designed to detect hardcoded AWS credentials within a local Git repository. It checks for both AWS Access Key IDs and AWS Secret Access Keys in your codebase and validates them. If valid credentials are found, it logs their presence, providing details on the file and caller identity.
-Requirements
 
 ## Project Structure
 
@@ -55,7 +54,7 @@ To run the script, use the command line with the following syntax:
 
 #### Example Output
 
-If no credentials are found, you will see:
+If credentials are found, you will see:
 
     TIMESTAMP - INFO - Branch: 
     TIMESTAMP - INFO - Commit ID: 
