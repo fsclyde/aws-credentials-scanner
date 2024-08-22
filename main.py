@@ -7,6 +7,12 @@ import sys
 import os
 from keys_scanner import KeysCheck
 
+# Process the tree
+def process_tree(tree, repo_path):
+    for entry in tree.traverse():
+        file_path = os.path.join(repo_path, entry.path)
+    return file_path
+
 # main function of the script
 def main():
     # Initialize logger
@@ -47,7 +53,11 @@ def main():
             for entry in commit.tree.traverse():
                 file_path = os.path.join(repo_path, entry.path)
 
-                if not check_if_directory(file_path) and check_if_file_exists(file_path):
+                # if tree then process the tree
+                if entry.type == 'tree':
+                    file_path = process_tree(entry, file_path)
+
+                if check_if_file_exists(file_path):
                     with open(file_path, 'r') as file:
                         lines = file.readlines()
                     credentials, access_key_count = MyKeysCheck.scan_for_aws_keys(lines)
